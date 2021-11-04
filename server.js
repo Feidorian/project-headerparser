@@ -19,6 +19,14 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get("/api/whoami", (req,res)=> {
+  const {
+    'x-forwarded-for':ipaddress,
+    'accept-language':language,
+    'user-agent':software
+  } = req.headers;
+  res.json({ipaddress, language, software})
+})
 
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
